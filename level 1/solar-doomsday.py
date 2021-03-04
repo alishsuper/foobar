@@ -1,3 +1,4 @@
+
 def solution(area):
     result = []
 
@@ -13,6 +14,6 @@ def solution(area):
             x = (x + area // x) // 2
         result.append(x * x)
         recursion(area - (x * x))
-
     recursion(area)
+    print(result)
 solution(16)
