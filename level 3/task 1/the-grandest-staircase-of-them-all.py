@@ -1,24 +1,14 @@
-# cnt = 0
+def solution(n):
+    # your code here
+    size = n + 1
 
-# def step(x, y):
-#     global cnt
-#     a = range(x, y)
-#     b = a[::-1]
-#     lcn = int(len(a)/2)
-#     cnt += lcn
-#     for i in range(0, lcn): # No need to count more than half way when comparing reversed arrays as a[i] will be >=b[i]
-#         nx = a[i] + 1
-#         ny = b[i] - nx + 1
-#         if(nx < ny):
-#             step(nx, ny)
-#         else:
-#             break
+    matrix = [[0 for _ in range(size)] for _ in range(size)]
 
-# def solution(n):
-#     if n == 200:
-#         return 487067745 
-#     #Could not get the script to complete fast enough for test case 200. 
-#     #Also tried another variant without the use of recursion and even that was too slow. 
-#     #Test case 200 completes in 3:10 minutes on my local PC.
-#     step(1, n)
-#     return cnt
+    matrix[0][0] = 1
+    for prev in range(1, size):
+        for left in range(0, size):
+            matrix[prev][left] = matrix[prev - 1][left]
+            if left >= prev:
+                matrix[prev][left] += matrix[prev - 1][left - prev]
+    print(matrix)
+    return matrix[n][n] - 1
